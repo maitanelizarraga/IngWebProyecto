@@ -1,0 +1,21 @@
+{% extends "myapp/base.html" %}
+{% block title %} Diccionario - Derecho jurídico{% endblock %}
+{% block content %}
+
+    <h1>Diccionario jurídico en lenguaje claro</h1>
+
+    <p> Explicaciones de términos legales</p>
+
+    {% if terminos %}
+        <ul>
+            {% for termino in terminos %}
+                <li><a href="{% url 'detalle_termino' termino.id %}">{{ termino.palabra }}</a>
+                <p>{{ termino.definicion|truncatewords.30}}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay términos en el diccionario.</p>
+    {% endif %}
+
+{% endblock %}
